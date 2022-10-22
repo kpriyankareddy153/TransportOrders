@@ -1,53 +1,58 @@
+package src.java;
+
 import java.util.HashMap;
 
 public class FlightDetails {
 
-  int capacity = 20;
-  static HashMap<String, HashMap<Integer, Integer>> map = new HashMap<String, HashMap<Integer, Integer>>();
+  public static final int capacity = 20;
+  public static final String departure = "YUL";
+  static HashMap<Integer, HashMap<String, Integer>> map = new HashMap<Integer, HashMap<String, Integer>>();
 
-  public FlightDetails() {}
+//  Method to initialize the flights data
+  public static void initialize_flights_data() {
 
-  public FlightDetails(int capacity, HashMap<String, HashMap<Integer, Integer>> map1) {
-    this.capacity = capacity;
-    map = map1;
+    map.put(1, new HashMap<String, Integer>() {{
+        put("YYZ", 1);
+    }});
+
+    map.put(2, new HashMap<String, Integer>() {{
+        put("YYC", 1);
+    }});
+
+    map.put(3, new HashMap<String, Integer>() {{
+        put("YVR", 1);
+    }});
+
+    map.put(4, new HashMap<String, Integer>() {{
+        put("YYZ", 2);
+    }});
+
+    map.put(5, new HashMap<String, Integer>() {{
+        put("YYC", 2);
+    }});
+
+    map.put(6, new HashMap<String, Integer>() {{
+        put("YVR", 2);
+    }});
+
   }
 
-  public static void initialize_map() {
-
-    map.put("YYZ", new HashMap<Integer, Integer>() {
-      {
-        put(1, 1);
-        put(2, 4);
-      }
-    });
-    map.put("YYC", new HashMap<Integer, Integer>() {
-      {
-        put(1, 2);
-        put(2, 5);
-      }
-    });
-    map.put("YVR", new HashMap<Integer, Integer>() {
-      {
-        put(1, 3);
-        put(2, 6);
-      }
-    });
-
+  public static int get_flights_capacity() {
+    return capacity;
   }
 
-  public int get_flights_capacity() {
-    return this.capacity;
+  public static String get_flights_departure() {
+    return departure;
   }
 
-  public static HashMap<String, HashMap<Integer, Integer>> get_flights_data() {
+  public static HashMap<Integer, HashMap<String, Integer>> get_flights_data() {
     return map;
   }
 
   public static void main(String[] args) {
-    System.out.println("Flight details class....");
-    initialize_map();
-    HashMap<String, HashMap<Integer, Integer>> default_map = get_flights_data();
-    System.out.println("Mappings of HashMap default_map are : "+ default_map);
+    initialize_flights_data();
+    HashMap<Integer, HashMap<String, Integer>> default_map = get_flights_data();
+    System.out.println("Mappings of HashMap(default_map) are : "+ default_map);
   }
   
 }

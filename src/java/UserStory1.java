@@ -1,42 +1,25 @@
-import java.util.Collections;
-import java.util.Comparator;
+package src.java;
+
 import java.util.HashMap;
-import java.util.Map.Entry;
 
-public class UserStory1 extends FlightDetails {
+public class UserStory1 {
 
-  public void print_flight_data() {
-    System.out.println("print_flight_data....");
-    FlightDetails.initialize_map();
-    HashMap<String, HashMap<Integer, Integer>> map = FlightDetails.get_flights_data();
+//  Method to iterate through the flight data map and print the data in required fashion
+  public static void print_flight_data() {
+    FlightDetails.initialize_flights_data();
+    HashMap<Integer, HashMap<String, Integer>> map = FlightDetails.get_flights_data();
 
-    // FUnction to sort based on Flight numbers
-    // Comparator<Entry<String, HashMap<Integer, Integer>>> valueComparator = new Comparator<Entry<String, HashMap<Integer, Integer>>>() { 
-    //   // Entry<Integer, Integer> df = 
-    //   @Override 
-    //   public int compare(Entry<String, HashMap<Integer, Integer>> e1, Entry<String, HashMap<Integer, Integer>> e2) { 
-    //     HashMap<Integer, Integer> v1 = e1.getValue(); 
-    //     HashMap<Integer, Integer> v2 = e2.getValue(); 
-    //     return v1.getValue().compareTo(v2.getValue()); 
-    //   } };
-
-    // Collections.sort(map, valueComparator);
-
-
-
-    String departure = "YUL";
-    for (String destination : map.keySet()) 
+    String departure = FlightDetails.get_flights_departure();
+    for (Integer flight : map.keySet())
     {
-        HashMap<Integer, Integer> day_flightno_map = map.get(destination);
-        for (Integer day : day_flightno_map.keySet()) {
-          System.out.println("Flight: " + day_flightno_map.get(day) + ", departure: " + departure + ", arrival: " + destination + ", day: " + day);
+        HashMap<String, Integer> destinationDayMap = map.get(flight);
+        for (String destination : destinationDayMap.keySet()) {
+          System.out.println("Flight: " + flight + ", departure: " + departure + ", arrival: " + destination + ", day: " + destinationDayMap.get(destination));
         }
     }
   }
 
   public static void main(String[] args) {
-    System.out.println("UserStory1....");
-    UserStory1 us1 = new UserStory1();
-    us1.print_flight_data();
+    print_flight_data();
   }
 }
